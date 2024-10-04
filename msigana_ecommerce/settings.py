@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'nested_admin',
     'theme',
     'django_quill',
-    'django_browser_reload' if DEBUG else '',
+    # 'django_browser_reload' if DEBUG else '',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
