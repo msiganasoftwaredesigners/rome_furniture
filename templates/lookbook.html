@@ -1,0 +1,117 @@
+{% extends 'base.html' %} {% load static %} 
+{% block title %}{{footer.company_main_page_title}}{% endblock %} 
+{% block content %} 
+
+<div class="grid grid-cols-4 md:grid-cols-12 ">
+  <div class="col-span-12">
+    
+       <!-- ====== About/chef Section End -->
+    <section class="section-name">
+      <!-- banner -->
+    
+  
+
+      <div class="md:ml-16 xl:ml-48">
+        <header class="section-heading">
+          <h2
+            class="text-3xl md:text-3xl font-medium text-gray-800 uppercase pt-4 mb-4 mt-4 px-6 md:px-0 card merienda"
+          >
+          {% comment %} Products {% endcomment %}
+          </h2>
+        </header>
+          <!-- product wrapper -->
+          <div id="product-list" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-1 2xl:gap-6 lg:pr-16 xl:pr-32 2xl:pr-48 mb-6 lg:mb-8">
+            {% for product in most_liked_products %}
+            <a class="flex flex-col card pb-2" href="{{product.get_store_url}}">
+                <div class="m-2 bg-white overflow-hidden flex-grow">
+                    <div class="relative group">
+                        <div class="w-full h-24 md:h-64 3xl:h-96 overflow-hidden relative">
+                            {% with product.get_main_image as main_image %}
+                            {% if main_image %}
+                                <img class="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110" src="{{ main_image.image.url }}" alt="{{ product.product_name }}">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="text-slate-400 text-sm md:text-2xl font-thin p-2 rounded"><i class="fas fa-star"></i> Rome Furniture</span>
+                                </div>
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+                      </div>
+                      <div class="hover:text-purple-400 text-left md:py-2 rounded-b mt-1">
+                        <div class=" w-full inline-block volkhov">{{ product.product_name|slice:":16"|capfirst }}</div>
+                    </div>
+                    <div class="bg-slate-100 hover:text-purple-400 text-center py-1 md:py-2 rounded-b mt-1  w-24 md:w-32">
+                        <div class=" w-full inline-block volkhov">Read More</div>
+                    </div>
+                </div>
+              </a>
+            {% endfor %}
+        </div>
+        
+      </div>
+      
+    </section>
+   
+  
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      
+
+      <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+       <script src="{% static 'js/main.js' %}"></script> 
+     
+  
+  
+  
+      <script>
+        let page = 2; // start from the second page
+        let isLoading = false; // flag to prevent multiple simultaneous requests
+        
+        window.onscroll = function (ev) {
+          if (!isLoading && window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+            isLoading = true; // set the flag to true to indicate that a request is in progress
+        
+            fetch(`/store?page=${page}`)
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error("Network response was not ok");
+                }
+                return response.json();
+              })
+              .then((data) => {
+                if (data.end) {
+                  window.onscroll = null; // remove the event handler when there are no more products
+                } else {
+                  data.products.forEach((product) => {
+                    // create a new product card
+                    let card = document.createElement("div");
+                    card.className = "flex flex-col";
+                    card.innerHTML = `
+                      <div class="m-2 bg-white shadow-md rounded-lg overflow-hidden flex-grow">
+                        <a href="${product.get_store_url}">
+                          <div class="w-full sm:h-32 md:h-64 overflow-hidden">
+                            <img class="w-full h-full object-cover" src="${product.product_images}" alt="${product.product_name}">
+                          </div>
+                        </a>
+                        <div class="sm:p-3 md:p-6">
+                          <a href="${product.get_store_url}" class="block text-lg font-semibold text-gray-800 hover:text-blue-600">${product.product_name}</a>
+                          <div class="my-2 md:my-4 text-blue-600 md:text-2xl">${product.product_price} birr</div>
+                        </div>
+                      </div>
+                    `;
+                    // append the new product card to the product list
+                    document.querySelector("#product-list").appendChild(card);
+                  });
+                  page++;
+                }
+              })
+              .catch((error) => {
+                console.error("There has been a problem with your fetch operation:", error);
+              })
+              .finally(() => {
+                isLoading = false; // set the flag back to false when the request is complete
+              });
+          }
+        };
+        
+      </script>
+{% endblock %}

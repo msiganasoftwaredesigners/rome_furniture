@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title %}Rome FurnitureBlog{% endblock %}
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 sm:px-0 mt-8 md:mt-16">
+
+</div>
+<div class="container pt-4 pb-6 items-center px-4 sm:px-8 md:px-16 lg:px-32 xl:px-32 2xl:max-w-9xl 2xl:mx-auto">
+<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4 sm:px-0 md:m-4">
+    {% for post in posts %}
+    <a href="{% url 'post_detail' post.slug %}" class="max-w-md mx-auto bg-white rounded-xl shadow-md  shadow-black overflow-hidden m-4 card">
+        <div class="w-full h-64 overflow-hidden rounded-t-md relative">
+            <img class="w-full h-full object-cover" src="{{ post.image.url }}" alt="{{ post.title }}">
+        </div>
+        <div class="p-8">
+            <div class="uppercase tracking-wide text-md text-orange-400 font-semibold merienda">
+                <p>{{ post.title }}</p>
+                
+            </div>
+            <p class="mt-2 text-black volkhov">{{ post.short_description|safe }}</p>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+<div class="max-w-6xl mx-auto px-4 sm:px-0 m-4">
+<a href="{% url 'home' %}" class="inline-block bg-black text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200 merienda card">
+    <i class="fas fa-arrow-left"></i> Back to shop
+</a>
+</div>
+</div>
+{% endblock %}

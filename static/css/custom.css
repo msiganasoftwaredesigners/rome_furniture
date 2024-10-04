@@ -1,0 +1,32 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Bitter:ital,wght@0,100..900;1,100..900&family=Bokor&family=Caprasimo&family=Fondamento:ital@0;1&family=Jacquard+24&family=Kings&family=Lugrasimo&family=Merienda:wght@300..900&family=Metal+Mania&family=Mooli&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rubik+Distressed&family=Rubik+Microbe&family=Rubik+Vinyl&family=Rubik+Wet+Paint&family=Tillana:wght@400;500;600;700;800&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&family=Yatra+One&display=swap');
+
+.merienda {
+    font-family: "Merienda", cursive;
+}
+
+.volkhov {
+    font-family: "Volkhov", serif;
+}
+
+.berkshire {
+    font-family: "Berkshire Swash", serif;
+}
+
+.yatra_one {
+    font-family: "Yatra One", system-ui;
+}
+
+.metal_mania {
+    font-family: "Metal Mania", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.rubik_wet {
+    font-family: "Rubik Wet Paint", system-ui;
+}
+    
+.kings {
+    font-family: "Kings", cursive;
+}

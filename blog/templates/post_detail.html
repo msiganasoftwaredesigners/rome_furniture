@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title %}{{ post.title }}{% endblock title %}
+{% block content %}
+<div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-sm overflow-hidden m-4">
+    <h1 class="text-3xl text-center text-black merienda font-bold mb-4">{{ post.title }}</h1>
+    <div class="w-full h-64 md:h-[480px] overflow-hidden rounded-md">
+        <img class="w-full h-full object-cover" src="{{ post.image.url }}" alt="{{ post.title }}">
+    </div>
+    <div class="mt-8 text-black volkhov">
+        {{ post.content.html|safe }}
+    </div>
+</div>
+<div class="max-w-4xl mx-auto px-4 sm:px-0 m-4">
+    <a href="{% url 'post_list' %}" class="inline-block bg-black card text-white px-4 py-2 rounded hover:bg-orange-400 transition-colors duration-200">
+        <i class="fas fa-arrow-left"></i> Back to blog posts
+    </a>
+</div>
+{% endblock content %}

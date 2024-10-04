@@ -1,0 +1,118 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="grid grid-cols-4 md:grid-cols-12 gap-2">
+  <div class="col-span-2 bg-white h-screen overflow-auto md:block hidden">
+    <div class="p-6 pt-0">
+      <a class="dropdown-item text-rose-600" href="{% url 'store' %}">Foods & Drinks</a>
+      {% for category in links %}
+      <a
+        class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded"
+        href="{{ category.get_url }}"
+        data-category-slug="{{ category.category_slug }}">{{ category.category_name }}</a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="col-span-10">
+    <section class="section-name">
+    
+            <div id="product-list" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-1 2xl:gap-3 lg:pr-16 xl:pr-32 2xl:pr-32 mb-6 lg:mb-8">
+                {% for product in most_liked_products %}
+                <div class="flex flex-col">
+                    <div class="m-2 bg-white shadow-md rounded-lg overflow-hidden flex-grow">
+                        <a href="{{product.get_store_url}}" class="relative group">
+                            <div class="w-full h-64 2xl:h-80 overflow-hidden relative">
+                                {% with product.get_main_image as main_image %}
+                                {% if main_image %}
+                                    <img class="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110" src="{{ main_image.image.url }}" alt="{{ product.product_name }}">
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <span class="text-red-500 text-lg md:text-2xl font-thin p-2 rounded"><i class="fas fa-star"></i> Henom</span>
+                                    </div>
+                                {% endif %}
+                                {% endwith %}
+                            </div>
+                        </a>
+                        <div class="sm:p-2 pl-2 2xl:pl-6 md:pt-0 md:pb-1">
+                            <a href="{{product.get_store_url}}" class="block text-base lg:text-sm xl:text-lg font-semibold text-gray-800 hover:text-blue-600">{{ product.product_name|slice:":16"|capfirst }}</a>
+                        
+                            <div class="flex items-center">
+                                <div class="flex gap-1 text-xs md:text-sm text-yellow-400">
+                                    {% for i in "12345"|make_list %}
+                                        {% if i|add:0 <= product.average_rating|add:0 %}
+                                            <span class="text-yellow-400"><i class="fas fa-star rating"></i></span>
+                                        {% else %}
+                                            <span class=""><i class="far fa-star rating"></i></span>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="text-xs text-gray-500 ml-3">({{ product.review_count }} Reviews)</div>
+                            </div>
+                        </div>
+                        <div class="bg-blue-950 hover:text-purple-400 text-center py-2 rounded-b mt-1">
+                            <a href="{{product.get_store_url}}" class="text-white w-full inline-block">Show Details</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+    </section>
+
+    <script>
+      let page = 2; // start from the second page
+      let isLoading = false; // flag to prevent multiple simultaneous requests
+      
+      window.onscroll = function (ev) {
+        if (!isLoading && window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+          isLoading = true; // set the flag to true to indicate that a request is in progress
+      
+          fetch(`/store?page=${page}`)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              if (data.end) {
+                window.onscroll = null; // remove the event handler when there are no more products
+              } else {
+                data.products.forEach((product) => {
+                  // create a new product card
+                  let card = document.createElement("div");
+                  card.className = "flex flex-col";
+                  card.innerHTML = `
+                    <div class="m-2 bg-white shadow-md rounded-lg overflow-hidden flex-grow">
+                      <a href="${product.get_store_url}">
+                        <div class="w-full sm:h-32 md:h-64 overflow-hidden">
+                          <img class="w-full h-full object-cover" src="${product.product_images}" alt="${product.product_name}">
+                        </div>
+                      </a>
+                      <div class="sm:p-3 md:p-6">
+                        <a href="${product.get_store_url}" class="block text-lg font-semibold text-gray-800 hover:text-blue-600">${product.product_name}</a>
+                        <div class="my-2 md:my-4 text-blue-600 md:text-2xl">${product.product_price} birr</div>
+                      </div>
+                    </div>
+                  `;
+                  // append the new product card to the product list
+                  document.querySelector("#product-list").appendChild(card);
+                });
+                page++;
+              }
+            })
+            .catch((error) => {
+              console.error("There has been a problem with your fetch operation:", error);
+            })
+            .finally(() => {
+              isLoading = false; // set the flag back to false when the request is complete
+            });
+        }
+      };
+      
+    </script>
+  </div>
+
+{% endblock %}
+
+
+
+

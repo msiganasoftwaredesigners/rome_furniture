@@ -1,0 +1,321 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title %}Minerals{% endblock %}
+{% block content %}
+
+<div class="relative w-full h-[600px]">
+  <!-- Slides -->
+  <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 1;">
+      <img src="{% static 'images/menu_slideshow/hhhh2.jpg' %}" alt="Image 1" class="w-full h-full object-cover">
+  </div>
+  <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
+      <img src="{% static 'images/menu_slideshow/hhhh1.jpg' %}" alt="Image 2" class="w-full h-full object-cover">
+  </div>
+  <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
+      <img src="{% static 'images/menu_slideshow/hhhh3.jpg' %}" alt="Image 3" class="w-full h-full object-cover">
+  </div>
+  <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
+      <img src="{% static 'images/menu_slideshow/hhhh4.jpg' %}" alt="Image 4" class="w-full h-full object-cover">
+  </div>
+  <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
+      <img src="{% static 'images/menu_slideshow/hhhh5.jpg' %}" alt="Image 5" class="w-full h-full object-cover">
+  </div>
+
+  <!-- Overlay for Slideshow -->
+  <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+      <h1 class="text-5xl md:text-5xl font-bold mb-4">MENUS</h1>
+      <div class="flex gap-4">
+          <a href="#" id="slideshow-food-menu-btn" class="bg-green-600 px-4 py-2 rounded hover:bg-blue-900 text-2xl text-white">Food Menu</a>
+          <a href="#" id="slideshow-drink-menu-btn" class="bg-blue-950 px-4 py-2 rounded hover:bg-blue-900 text-2xl text-white">Drink Menu</a>
+      </div>
+  </div>
+</div>
+
+<!-- Overlay Outside of Slideshow -->
+<div class="flex flex-col items-center justify-center text-white lg:mt-24 mb-6">
+  <div class="flex gap-6  mt-4">
+      <a href="#" id="outside-food-menu-btn" class="bg-green-600 px-4 py-2  hover:bg-blue-900 text-base md:text-2xl text-white mr-10 md:mr-16">Food Menu</a>
+      <a href="#" id="outside-drink-menu-btn" class="bg-blue-950 px-4 py-2 rounded hover:bg-blue-900 text-base md:text-2xl text-white">Drink Menu</a>
+  </div>
+</div>
+
+<div id="food-menu" class="menu-cards max-w-5xl mx-auto flex flex-col md:flex-row justify-center md:space-x-4 bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-500">
+  <!-- First Card -->
+  <div class="menu-card  md:w-1/2 bg-white shadow-lg rounded-lg overflow-hidden border-2 border-blue-950 mb-6 md:mb-auto mx-3">
+    
+<div class="p-6">
+  <div class="bg-slate-500 rounded-md">
+    <h2 class="text-xl font-bold mb-4 py-2 text-center text-white">SHAREABLES</h2>
+    </div>
+  <div class="mb-4">
+      <h3 class="font-semibold">SUGAR DUSTED CHURRO BITES</h3>
+      <p>Cinnamon Sugar-Dusted Churros, Crème Anglaise, Chocolate Ganache</p>
+      <p class="font-bold">$9</p>
+      <p class="text-sm text-gray-600">vegetarian</p>
+      <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+  </div>
+  <div class="mb-4">
+    <h3 class="font-semibold">SUGAR DUSTED CHURRO BITES</h3>
+    <p>Cinnamon Sugar-Dusted Churros, Crème Anglaise, Chocolate Ganache</p>
+    <p class="font-bold">$9</p>
+    <p class="text-sm text-gray-600">vegetarian</p>
+    <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+</div>
+<div class="mb-4">
+    <h3 class="font-semibold">SUGAR DUSTED CHURRO BITES</h3>
+    <p>Cinnamon Sugar-Dusted Churros, Crème Anglaise, Chocolate Ganache</p>
+    <p class="font-bold">$9</p>
+    <p class="text-sm text-gray-600">vegetarian</p>
+    <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+</div>
+  <!-- Add more food items here -->
+  <div class="mb-4">
+      <h3 class="font-semibold">HANGOVER BURGER*</h3>
+      <p>Double Smash Patty, Caramelized Onions, Pickles, Bacon, American Cheese, Over EZ Egg, Spicy Aioli, Bun</p>
+      <p class="font-bold">$18</p>
+      <p class="text-sm text-gray-600">vegetarian</p>
+      <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+
+  </div>
+  <div class="mb-4">
+    <h3 class="font-semibold">DELUXE PARFAIT</h3>
+    <p>D
+        Vanilla Honey Yogurt, Granola, Seasonal House Compote, Berries</p>
+    <p class="font-bold">$18</p>
+    <p class="text-sm text-gray-600">vegetarian</p>
+    <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+
+</div>
+
+  <!-- Add more food items here -->
+
+</div>
+</div>
+
+<!-- Second Card -->
+<div class="menu-card md:w-1/2 bg-white shadow-lg rounded-lg overflow-hidden border-2 border-blue-950 mx-3">
+<div class="p-6">
+  <div class="bg-slate-500 rounded-md">
+  <h2 class="text-xl font-bold mb-4 py-2 text-center text-white">SANDWICHES</h2>
+  </div>
+  <div class="mb-4">
+      <h3 class="font-semibold"> HANGOVER BURGER*</h3>
+      <p>Double Smash Patty, Caramelized Onions, Pickles, Bacon, American Cheese, Over EZ Egg, Spicy Aioli, Bun</p>
+      <p class="font-bold">$18</p>
+      <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+  </div>
+  <!-- Add more food items here -->
+
+  <div class="mb-4">
+      <h3 class="font-semibold">BACON, EGG & CHEESE*</h3>
+      <p>Bacon, Fried Egg, Cheese, Everything Bagel, Spicy Aioli | Add: Double Bacon +2</p>
+      <p class="font-bold">$14</p>
+      <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+  </div>
+  <div class="mb-4">
+    <h3 class="font-semibold">HOT HONEY CHICKEN SANDWICH</h3>
+    <p>Fried Chicken, Hot Honey Glaze, Whipped Pimento, Tomato, Pickles, Bun</p>
+    <p class="font-bold">$17</p>
+    <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+</div>
+<div class="mb-4">
+    <h3 class="font-semibold">CHICKEN SALAD CLUB</h3>
+    <p>Roasted Chicken Salad, Ham, Swiss, Lettuce, Tomato, Garlic Aioli, Toasted Sourdough</p>
+    <p class="font-bold">$16</p>
+    <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+</div>
+<div class="mb-4">
+    <h3 class="font-semibold">CUBANO</h3>
+    <p>Pulled Pork, Ham, Swiss, Caramelized Onions, Pickles, Dijonnaise, Pressed Baguette</p>
+    <p class="font-bold">$17</p>
+    <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+</div>
+  <!-- Add more food items here -->
+</div>
+</div>
+</div>
+</div>
+<div id="drink-menu" class="menu-cards max-w-5xl mx-auto flex flex-col md:flex-row justify-center md:space-x-4 bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-500 hidden">
+    <!-- First Card -->
+    <div class="menu-cardmd:w-1/2 bg-white shadow-lg rounded-lg overflow-hidden border-2 border-blue-950 mx-3">
+      
+  <div class="p-6">
+    <div class="bg-slate-500 rounded-md">
+      <h2 class="text-xl font-bold mb-4 py-2 text-center text-white">THE HENOM BLOODY MARYS</h2>
+      </div>
+    <div class="mb-4">
+        <h3 class="font-semibold text-blue-950">THE OG BLOODY MARY</h3>
+        <p>Family Jones Vodka, OG Bloody Mix, Pickled Vegetables, Celery, Bacon, Salt Rim</p>
+        <p class="font-bold">$14</p>
+        <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+    </div>
+    <div class="mb-4">
+      <h3 class="font-semibold text-blue-950">HAIR OF THE BULLDOG</h3>
+      <p>Family Jones Gin, OG Bloody Mix, Celery, Pickled Vegetables, Celery Salt Rim</p>
+      <p class="font-bold">$14</p>
+      <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+  </div>
+  <div class="mb-4">
+      <h3 class="font-semibold text-blue-950">TÍA MARIA</h3>
+      <p>
+        Tanteo Habanero Infused Tequila, Green Tomatillo Bloody Mix, Celery, Lime, Tajín Salt Rim</p>
+      <p class="font-bold">$14</p>
+      <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+  </div>
+    <!-- Add more food items here -->
+    <div class="mb-4">
+        <h3 class="font-semibold text-blue-950">PIG & PONY SHOW</h3>
+        <p>Bacon-Washed Whiskey, OG Bloody Mix, Bacon, Bacon, Bacon, Miller High Life Pony Beer Back</p>
+        <p class="font-bold">$16</p>
+      
+        <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+  
+    </div>
+    <div class="mb-4">
+        <h3 class="font-semibold text-blue-950"> MICHELADA</h3>
+        <p>Modelo Especial, OG Bloody Mix, Lime, Tajín Salt Rim</p>
+        <p class="font-bold">$10</p>
+      
+        <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+  
+    </div>
+    <!-- Add more food items here -->
+  </div>
+  </div>
+ 
+
+  
+  <!-- Second Card -->
+  <div class="menu-card md:w-1/2 bg-white shadow-lg rounded-lg overflow-hidden border-2 border-blue-950 mx-3">
+  <div class="p-6">
+    <div class="bg-slate-500 rounded-md">
+    <h2 class="text-xl font-bold mb-4 py-2 text-center text-white">DRAFT BEERS</h2>
+    </div>
+    <div class="mb-4">
+        <h3 class="font-semibold text-blue-950">MILE HIGH JINKS</h3>
+        <p> Lager, Colorado Native, CO</p>
+        <p class="font-bold">$8</p>
+        <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+    </div>
+    <!-- Add more food items here -->
+  
+    <div class="mb-4">
+        <h3 class="font-semibold text-blue-950">COORS LIGHT</h3>
+        <p>Light Lager, Coors Brewing, CO</p>
+        <p class="font-bold">$8</p>
+        <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+    </div>
+    <div class="mb-4">
+      <h3 class="font-semibold text-blue-950">BLUE MOON</h3>
+      <p> Belgian White, Blue Moon, CO</p>
+      <p class="font-bold">$7</p>
+      <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+  </div>
+  <div class="mb-4">
+      <h3 class="font-semibold text-blue-950">SIPPIN’ PRETTY</h3>
+      <p>Fruited Sour, Odell Brewing, CO</p>
+      <p class="font-bold">$6</p>
+      <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+  </div>
+  <div class="mb-4">
+      <h3 class="font-semibold text-blue-950">MODELO</h3>
+      <p>Mexican Lager, Modelo, MX</p>
+      <p class="font-bold">$7</p>
+      <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+  </div>
+  <div class="mb-4">
+    <h3 class="font-semibold text-blue-950">VOODOO RANGER HAZY</h3>
+    <p> Hazy IPA, New Belgium, CO</p>
+    <p class="font-bold">$5</p>
+    <hr class="h-0.5 my-4  bg-blue-950 border-0 dark:bg-gray-700"></hr>
+</div>
+    <!-- Add more food items here -->
+  </div>
+  </div>
+  </div>
+  
+
+ 
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      // Slideshow Functionality
+      let slideIndex = 0;
+      const slides = document.querySelectorAll('.slide');
+
+      function showSlides() {
+          slides.forEach((slide, index) => {
+              slide.style.opacity = '0'; // Hide all slides
+              if (index === slideIndex) {
+                  slide.style.opacity = '1'; // Show the current slide
+              }
+          });
+          slideIndex = (slideIndex + 1) % slides.length; // Move to the next slide
+      }
+
+      setInterval(showSlides, 3000); // Change slide every 3 seconds
+      showSlides(); // Show the first slide immediately
+
+      function showMenu(menuId) {
+          const foodMenu = document.getElementById('food-menu');
+          const drinkMenu = document.getElementById('drink-menu');
+          const foodButton = document.getElementById('slideshow-food-menu-btn');
+          const drinkButton = document.getElementById('slideshow-drink-menu-btn');
+          const outsideFoodButton = document.getElementById('outside-food-menu-btn');
+          const outsideDrinkButton = document.getElementById('outside-drink-menu-btn');
+
+          foodMenu.classList.add('hidden');
+          drinkMenu.classList.add('hidden');
+          foodButton.classList.remove('bg-green-600', 'text-white');
+          drinkButton.classList.remove('bg-green-600', 'text-white');
+          outsideFoodButton.classList.remove('bg-green-600', 'text-white');
+          outsideDrinkButton.classList.remove('bg-green-600', 'text-white');
+          
+          foodButton.classList.add('bg-blue-950', 'text-white');
+          drinkButton.classList.add('bg-blue-950', 'text-white');
+          outsideFoodButton.classList.add('bg-blue-950', 'text-white');
+          outsideDrinkButton.classList.add('bg-blue-950', 'text-white');
+
+          if (menuId === 'food-menu') {
+              foodMenu.classList.remove('hidden');
+              foodButton.classList.add('bg-green-600', 'text-white');
+              outsideFoodButton.classList.add('bg-green-600', 'text-white');
+          } else if (menuId === 'drink-menu') {
+              drinkMenu.classList.remove('hidden');
+              drinkButton.classList.add('bg-green-600', 'text-white');
+              outsideDrinkButton.classList.add('bg-green-600', 'text-white');
+          }
+
+          setTimeout(() => {
+              window.scrollTo({
+                  top: document.getElementById(menuId).offsetTop - 100, // Adjust offset as needed
+                  behavior: 'smooth'
+              });
+          }, 100); // Short delay to ensure menu is visible before scrolling
+      }
+
+      // Slideshow Buttons
+      document.getElementById('slideshow-food-menu-btn').addEventListener('click', function() {
+          showMenu('food-menu');
+      });
+
+      document.getElementById('slideshow-drink-menu-btn').addEventListener('click', function() {
+          showMenu('drink-menu');
+      });
+
+      // Outside Buttons
+      document.getElementById('outside-food-menu-btn').addEventListener('click', function() {
+          showMenu('food-menu');
+      });
+
+      document.getElementById('outside-drink-menu-btn').addEventListener('click', function() {
+          showMenu('drink-menu');
+      });
+  });
+</script>
+
+
+{% endblock %}

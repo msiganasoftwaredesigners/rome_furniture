@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Filter Foods & Drinks by Category, size and price from Henom Restaurant {% endblock %}
+{% block content %}
+<div class="grid grid-cols-4 md:grid-cols-12 gap-2">
+
+  <style>
+    @media (max-width: 768px) {
+        #dropdown-content {
+            left: 50%;
+            transform: translateX(-50%);
+            right: initial;
+        }
+    }
+  </style>
+
+    <div class="col-span-2 bg-white h-screen overflow-auto md:block hidden">
+      <div class="p-6 pt-0">
+        <a class="dropdown-item text-rose-600" href="{% url 'store' %}">Foods & Drink</a>
+        {% for category in links %}
+        <a
+          class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded"
+          href="{{ category.get_url }}"
+          data-category-slug="{{ category.category_slug }}">{{ category.category_name }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  <div class="col-span-10 mt-16">
+    <section class="section-name">
+      <div class="container">
+        <!-- Product list -->
+        {% if products.count == 0 %}
+        <div class="flex text-justify">
+        <p class="px-6">No services found for the selected filters.</p>
+        </div>
+        {% else %}
+        <div id="product-list" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-1 2xl:gap-3">
+        
+          {% for product in products %}
+          <div class="flex flex-col">
+            <div class="m-2 bg-white shadow-md rounded-lg overflow-hidden flex-grow">
+              <a href="{{product.get_store_url}}" class="relative">
+                <div class="w-full h-32 2xl:h-64 overflow-hidden relative">
+                  {% with product.get_main_image as main_image %}
+                  {% if main_image %}
+                  <img class="w-full h-full object-cover" src="{{ main_image.image.url }}" alt="{{ product.product_name }}">
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="text-red-500 text-lg md:text-2xl font-thin p-2 rounded"><i class="fas fa-star"></i> Henom</span>
+                  </div>
+                  {% endif %}
+                  {% endwith %}
+                </div>
+              </a>
+              <div class="sm:p-2 pl-4 md:pl-2  2xl:pl-6 md:pt-0 md:pb-1">
+                <a href="{{product.get_store_url}}" class="block text-base lg:text-sm  2xl:text-lg font-semibold text-gray-800 hover:text-blue-600">{{ product.get_short_name|capfirst }}</a>
+                <div class="my-0 2xl:my-2 text-blue-600 text-sm md:text-base">
+                  {% load price_filters%}
+                  {{ product.default_price }} br
+                </div>
+                <div class="flex items-center">
+                  <div class="flex gap-1 text-sm text-yellow-400">
+                    <span><i class="fas fa-star"></i></span>
+                    <span><i class="fas fa-star"></i></span>
+                    <span><i class="fas fa-star"></i></span>
+                    <span><i class="fas fa-star"></i></span>
+                    <span><i class="fas fa-star"></i></span>
+                  </div>
+                  <div class="text-xs text-gray-500 ml-3">(150)</div>
+                </div>
+              </div>
+              <div class="bg-blue-600  hover:text-purple-400 text-center py-2 rounded-b mt-1">
+                <a href="{{product.get_store_url}}" class="text-white  w-full inline-block">Show Details</a>
+              </div>
+            </div>
+         
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+        <!-- End of product list -->
+      </div>
+    </section>
+ 
+<header class="section-heading">
+  <h2
+    class="text-2xl md:text-3xl font-medium text-gray-800 uppercase mb-2 md:mb-6 mt-2 md:mt-4 px-6 md:px-0"
+  >
+    recomended for you
+  </h2>
+</header>
+  <!-- product wrapper -->
+   <div id="product-list" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-1 2xl:gap-3  lg:pr-16 xl:pr-32 2xl:pr-64 mb-6 lg:mb-8">
+    {% for product in most_liked_products %}
+    <div class="flex flex-col">
+        <div class="m-2 bg-white shadow-md rounded-lg overflow-hidden flex-grow">
+            <a href="{{product.get_store_url}}" class="relative">
+              <div class="w-full h-32 2xl:h-64 overflow-hidden relative">
+                {% with product.get_main_image as main_image %}
+                {% if main_image %}
+                    <img class="w-full h-full object-cover" src="{{ main_image.image.url }}" alt="{{ product.product_name }}">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="text-red-500 text-lg md:text-2xl font-thin p-2 rounded"><i class="fas fa-star"></i>Henom</span>
+                    </div>
+                {% endif %}
+                {% endwith %}
+            </div>
+            </a>
+            <div class="sm:p-2 pl-4  md:pl-2  2xl:pl-6 md:pt-0 md:pb-1">
+                <a href="{{product.get_store_url}}" class="block text-base lg:text-sm  xl:text-lg font-semibold text-gray-800 hover:text-blue-600">{{ product.product_name|slice:":16"|capfirst }}</a>
+                <div class="my-0 2xl:my-2 text-blue-600 text-sm md:text-base">
+                    {% load price_filters%}
+                    {{ product.default_price }} br
+                </div>
+                <div class="flex items-center">
+                  <div class="flex gap-1 text-sm text-yellow-400">
+                    <span><i class="fas fa-star"></i></span>
+                    <span><i class="fas fa-star"></i></span>
+                    <span><i class="fas fa-star"></i></span>
+                    <span><i class="fas fa-star"></i></span>
+                    <span><i class="fas fa-star"></i></span>
+                  </div>
+                  <div class="text-xs text-gray-500 ml-3">(150)</div>
+                </div>
+            </div>
+            <div class="bg-blue-600  hover:text-purple-400 text-center py-2 rounded-b mt-1">
+                <a href="{{product.get_store_url}}" class="text-white  w-full inline-block">Show Details</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div> 
+
+</div>
+</div>
+
+{% endblock %}

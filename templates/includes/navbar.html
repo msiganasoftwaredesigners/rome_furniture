@@ -1,0 +1,185 @@
+{% load static %}
+{% load cache %}
+{% block content %}
+
+<header class="py-4 shadow-sm bg-slate-600">
+    <div class="container flex items-center md:justify-between ">
+        <a href="{% url 'home' %}" class="brand-wrap w-24 mr-2 md:mr-4  md:ml-2 pl-2 volkhov">
+            {% if not footer.nav_company_logo.url %}
+            <p class="text-white merienda">Rome Furniture</p>
+            {% else %}
+            <img src="{{footer.nav_company_logo.url}}" alt="Main page image" />
+         {% endif %}
+        </a>
+
+
+        <nav class="hidden sm:flex space-x-12">
+            {% comment %} <a href="{% url 'hours-location' %}" class="text-white text-lg xl:text-xl hover:text-slate-200 transition">Hours & Location</a> {% endcomment %}
+            {% comment %} <a href="{% url 'menus' %}" class="text-white text-lg xl:text-xl hover:text-slate-200 transition">Services</a> {% endcomment %}
+            <a href="{% url 'store' %}" class="text-white text-lg xl:text-xl hover:text-slate-200 transition volkhov">Products</a>
+            <a href="{% url 'lookbook' %}" class="text-white text-lg xl:text-xl hover:text-slate-200 transition volkhov">LookBook</a>
+            <a href="{% url 'about-us' %}" class="text-white text-lg xl:text-xl hover:text-slate-200 transition volkhov">About Us</a>
+            <a href="{% url 'contact-us' %}" class="text-white text-lg xl:text-xl hover:text-slate-200 transition volkhov">Contact Us</a>
+            {% comment %} <a href="{% url 'online-order' %}" class="text-white text-lg xl:text-xl hover:text-slate-200 transition">Online Order</a> {% endcomment %}
+        </nav>
+        <div class="space-x-4  md:space-x-12 flex items-center pl-64  md:pl-0 ">
+    
+            <script>
+                $(document).ready(function() {
+                    $('#filter-button').click(function() {
+                        $('#dropdown-content').removeClass('hidden');
+                    });
+            
+                    $('#close-button').click(function() {
+                        $('#dropdown-content').addClass('hidden');
+                        $('#filter-button').show();
+                    });
+
+                    $('.category-button').click(function() {
+                        // Remove the 'bg-gray-600' class from all category buttons
+                        $('.category-button').removeClass('bg-gray-400 text-white');
+                    
+                        // Add the 'bg-gray-600' class to the clicked button
+                       $(this).addClass('bg-gray-400 text-white');
+
+                    // Store the selected category in localStorage
+                    var category = $(this).val();
+                    if (category != '') {
+                        localStorage.setItem('selectedCategory', category);
+                    } else {
+                        localStorage.removeItem('selectedCategory');
+                    }
+                    //localStorage.setItem('selectedCategory', $(button).val());
+                    
+                    // Set the value of a hidden input field to the value of the clicked button
+                    if ($(this).val() != '') {
+                        $('#category-input').val($(this).val());
+                    }
+                });
+
+                
+
+                      // Highlight the selected category button on page load
+                    var selectedCategory = localStorage.getItem('selectedCategory');
+                    if (selectedCategory) {
+                        $('.category-button[value="' + selectedCategory + '"]').addClass('bg-gray-400 text-white');
+                    }
+
+                    // Remove the selected category from localStorage when the Apply button is clicked
+                    $('#filter-form').submit(function() {
+                        localStorage.removeItem('selectedCategory');
+                    });
+                    $(document).click(function(event) {
+                        if (!$(event.target).closest('#dropdown-content').length && !$(event.target).is('#filter-button')) {
+                            $('#dropdown-content').addClass('hidden');
+                            $('#filter-button').show();
+                        }
+                    });
+                });
+            </script>
+            <a href="{% url 'admin:index' %}" class="ml-auto justify-self-end text-white hover:text-slate-200 transition pl-4 pr-2 volkhov">
+                Login
+            </a>
+        </div>
+    </div>
+</header>
+
+    <!-- mobile menubar --> 
+    <div
+        class="fixed w-full border-t border-gray-200 shadow-sm bg-slate-100 py-3 bottom-0 left-0 flex gap-28 lg:hidden z-40 px-2 pl-4">
+        <a href="javascript:void(0)" class="block text-center text-gray-700 hover:text-primary transition relative pr-3">
+            <div class="text-xl" id="menuBar">
+                <i class="fas fa-bars text-slate-600-500"></i>
+            </div>
+            <div class="text-xs leading-3 text-slate-600">Menu</div>
+        </a>
+{% comment %}       
+        <div class="col-lg col-md-6 col-sm-12 col">
+            <form action="{% url 'search' %}" method="GET" class="flex items-center bg-white rounded-full text-sm relative ">
+                <input class="w-full py-3 px-3 md:px-16 text-gray-700 leading-tight focus:outline-none border border-gray-300 rounded-full pr-10" id="search" type="text" placeholder="Search" name="keyword">
+                <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                    <button class="bg-white text-black rounded-full p-2 hover:bg-gray-200 focus:outline-none w-10 h-10 flex items-center justify-center" type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 50 50" class="fill-current">
+                            <path d="M 21 3 C 11.622998 3 4 10.623005 4 20 C 4 29.376995 11.622998 37 21 37 C 24.712383 37 28.139151 35.791079 30.9375 33.765625 L 44.085938 46.914062 L 46.914062 44.085938 L 33.886719 31.058594 C 36.443536 28.083 38 24.223631 38 20 C 38 10.623005 30.377002 3 21 3 z M 21 5 C 29.296122 5 36 11.703883 36 20 C 36 28.296117 29.296122 35 21 35 C 12.703878 35 6 28.296117 6 20 C 6 11.703883 12.703878 5 21 5 z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div> {% endcomment %}
+    
+        <a href="{% url 'home' %}" class="pl-2 relative">
+            <div class="w-12 h-12  font-bold text-lg flex items-center justify-center  text-slate-600 pr-2 volkhov">
+               Home
+            </div>
+            
+        </a>
+        
+    </div>
+    <!-- mobile menu end -->
+
+    <!-- mobile sidebar menu -->
+    <div class="fixed left-0 top-0 w-full h-full z-50 bg-slate-100 bg-opacity-30 shadow hidden" id="mobileMenu">
+        <div class="absolute left-0 top-0 w-72 h-full z-50 bg-white shadow">
+            <div id="closeMenu"
+                class="text-white hover:text-primary text-lg absolute right-4 top-4 cursor-pointer">
+                <i class="fas fa-times text-black text-3xl"></i>
+            </div>
+            
+            <!-- navlink -->
+            <div class="flex flex-col pt-8 bg-slate-100 min-h-full">
+               
+                <a class="text-lg font-semibold text-black mb-1 font-roboto pl-4 pt-4 volkhov" href="{% url 'home'  %}">Home</a>
+                <a class="text-lg font-semibold text-black mb-1 font-roboto pl-4 pt-4 volkhov" href="{% url 'store' %}">Products</a>
+                <a class="text-lg font-semibold text-black mb-1 volkhov pl-4 pt-4 " href="{% url 'lookbook' %}">LookBook</a>
+                <a class="text-lg font-semibold text-black mb-1 volkhov pl-4 pt-4" href="{% url 'about-us'  %}">About Us</a>
+                <a class="text-lg font-semibold text-black mb-1 volkhov pl-4 pt-4" href="{% url 'contact-us' %}">Contact Us</a>
+           
+             
+            </div>
+            <script>
+                $(document).ready(function() {
+                    // Hide all categories after the first 6
+                    $(".category-link:gt(5)").hide();
+                
+                    // Show all categories when the "More" button is clicked
+                    $("#moreButton").click(function() {
+                        $(".category-link").show();
+                        $(this).hide();  // Hide the "More" button
+                    });
+                });
+            </script>
+            {% comment %} <h3 class="text-xl font-semibold text-gray-700 mb-1 font-roboto pl-4 pt-4">Menu</h3> {% endcomment %}
+            <div class="">
+            
+               
+            </div>
+            <!-- navlinks end -->
+        </div>
+    </div>
+  
+    <script>
+        let menuBar = document.querySelector('#menuBar')
+        let mobileMenu = document.querySelector('#mobileMenu')
+        let closeMenu = document.querySelector('#closeMenu')
+        let sidebar = document.querySelector('#mobileMenu > div')
+    
+        menuBar.addEventListener('click', function(){
+            mobileMenu.classList.remove('hidden')
+        })
+    
+        closeMenu.addEventListener('click', function(){
+            mobileMenu.classList.add('hidden')
+        })
+    
+        // Close the sidebar when clicking outside of it
+        mobileMenu.addEventListener('click', function(){
+            mobileMenu.classList.add('hidden')
+        })
+    
+        // Prevent clicks inside the sidebar from closing it
+        sidebar.addEventListener('click', function(event){
+            event.stopPropagation()
+        })
+    </script>
+   
+{% endblock %}

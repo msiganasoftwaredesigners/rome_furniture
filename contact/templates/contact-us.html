@@ -1,0 +1,82 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block title %}
+    {{ footer.company_main_page_title }}
+{% endblock %} 
+
+{% block content %}
+<!-- ====== Contact Section Start ====== -->
+<section id="contact" class="relative py-10 md:py-[60px] bg-slate-100">
+  <div class="px-4 md:mx-24 xl:mx-24 2xl:mx-48">
+    <div class="-mx-4 flex flex-wrap items-center">
+      <!-- Title Section -->
+      <div class="w-full lg:w-1/3 px-4 mb-8 lg:mb-0">
+        <h1 class="text-4xl md:text-5xl font-bold text-center pb-4 md:pb-8 merienda">Rome Furniture</h1>
+        <h1 class="text-4xl md:text-4xl text-black font-bold text-center lg:text-left merienda">Send Us a Message</h1>
+      </div>
+      <!-- Form Section -->
+      <div class="w-full lg:w-1/3 px-4 lg:ml-48 2xl:ml-64">
+        <div class="wow fadeInUp bg-white px-8 py-10 dark:bg-dark-2 shadow-lg sm:px-10 sm:py-12 md:p-[60px] lg:p-10 lg:px-10 lg:py-12 2xl:p-[60px] rounded-lg" data-wow-delay=".2s">
+          <form id="contact-form" action="{% url 'contact-us' %}" method="post">
+            {% csrf_token %}
+            <div class="mb-[11px]">
+              <label for="full_name" class="mb-4 block text-sm text-body-color dark:text-dark-6">Full Name*</label>
+              <input type="text" id="full_name" name="full_name" placeholder="Melat Kebede" required class="w-full border-0 border-b border-[#f1f1f1] bg-transparent pb-3 text-body-color placeholder:text-body-color/60 focus:border-primary focus:outline-none dark:border-dark-3 dark:text-dark-6" />
+            </div>
+            <div class="mb-[11px]">
+              <label for="email" class="mb-4 block text-sm text-body-color dark:text-dark-6">Email</label>
+              <input type="email" id="email" name="email" placeholder="example@yourmail.com" class="w-full border-0 border-b border-[#f1f1f1] bg-transparent pb-3 text-body-color placeholder:text-body-color/60 focus:border-primary focus:outline-none dark:border-dark-3 dark:text-dark-6" />
+            </div>
+            <div class="mb-[11px]">
+              <label for="phone" class="mb-4 block text-sm text-body-color dark:text-dark-6">Phone*</label>
+              <input type="text" id="phone" name="phone" placeholder="+251-995-030-321" required class="w-full border-0 border-b border-[#f1f1f1] bg-transparent pb-3 text-body-color placeholder:text-body-color/60 focus:border-primary focus:outline-none dark:border-dark-3 dark:text-dark-6" />
+            </div>
+            <div class="mb-[11px]">
+              <label for="message" class="mb-4 block text-sm text-body-color dark:text-dark-6">Message</label>
+              <textarea id="message" name="message" placeholder="Leave your message" required class="w-full h-32 border-0 border-b border-[#f1f1f1] bg-transparent pb-3 text-lg text-body-color placeholder:text-body-color/60 focus:border-primary focus:outline-none dark:border-dark-3 dark:text-dark-6"></textarea>
+            </div>
+            <div class="mb-0">
+              <button type="submit" class="inline-flex items-center justify-center rounded-md bg-slate-600 px-10 py-3 text-base font-medium text-white transition duration-300 ease-in-out hover:bg-blue-dark">Submit</button>
+            </div>
+          </form>
+          <div id="contact-message" class="mt-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'js/main.js' %}"></script>
+  <script>
+    $(document).ready(function() {
+      $('#contact-form').on('submit', function(event) {
+        event.preventDefault();
+        var form = $(this);
+        $.ajax({
+            type: 'POST',
+            url: form.attr('action'),
+            data: form.serialize(),
+            success: function(response) {
+                $('#contact-message').html('<p class="text-green-500">' + response.message + '</p>');
+                form[0].reset();
+            },
+            error: function(xhr, status, error) {
+                var response = xhr.responseJSON;
+                if (response && response.errors) {
+                    var errorMessages = '';
+                    $.each(response.errors, function(key, value) {
+                        errorMessages += '<p class="text-red-500">' + value[0] + '</p>';
+                    });
+                    $('#contact-message').html(errorMessages);
+                } else {
+                    $('#contact-message').html('<p class="text-red-500">An error occurred while processing your request.</p>');
+                }
+            }
+        });
+    });
+    
+    });
+  </script>
+</section>
+<!-- ====== Contact Section End ====== -->
+{% endblock %}

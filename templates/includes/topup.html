@@ -1,0 +1,55 @@
+{% load static %}
+{% block content %}
+
+<!-- Contact Button -->
+<button id="contactButton" class="fixed bottom-2 right-4 z-50 p-3 px-4 rounded-full bg-slate-500 text-white font-extrabold transition-colors duration-300 hover:bg-slate-600 hover:text-slate-300 md:bottom-12 md:right-4 md:px-5 md:p-4">
+  <i class="fa-solid fa-comment-sms text-xl"></i>
+</button>
+
+<!-- Contact Cards -->
+<div id="contactCards" class="fixed bottom-1 right-4 z-40 transition-opacity transform opacity-0 translate-y-2 md:bottom-12 md:right-4 md:translate-y-0">
+
+    <!-- Contact Options -->
+    <button class="contact-card p-3 px-4 rounded-full bg-white text-gray-700 border border-gray-300 font-extrabold transition-colors duration-300 mb-2 flex items-center">
+       
+        <a href="sms:+25191 340 2587" class=""> <i class="fa-solid fa-comment-sms text-xl text-green-500"></i></a>
+    </button>
+    <button class="contact-card p-3 px-4 rounded-full bg-white text-gray-700 border border-gray-300 font-extrabold transition-colors duration-300 mb-2 flex items-center">
+        
+        <a href="https://t.me/kode_Minerals/251" class=""><i class="fab fa-telegram text-xl text-blue-400"></i></a>
+    </button>
+    <button class="contact-card p-3 px-4 rounded-full bg-white text-gray-700 border border-gray-300 font-extrabold transition-colors duration-300 flex items-center">
+        
+        <a href="tel:+25191 340 2587" class=""><i class="fa-solid fa-phone text-xl text-blue-500"></i></a>
+    </button>
+    <button id="closeContactCards" class="p-3 px-4 rounded-full  text-slate-500 font-extrabold transition-colors duration-300 mb-2 flex items-center justify-center">
+        <i class="fa-solid fa-times text-3xl"></i>
+    </button>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#contactButton').on('click', function() {
+            $('#contactCards').toggleClass('opacity-0 translate-y-2 opacity-100 translate-y-0');
+            if ($('#contactCards').hasClass('opacity-100')) {
+                $('#contactButton').hide();
+            } else {
+                $('#contactButton').show();
+            }
+        });
+
+        $('#closeContactCards').on('click', function() {
+            $('#contactCards').removeClass('opacity-100 translate-y-0').addClass('opacity-0 translate-y-2');
+            $('#contactButton').show();
+        });
+
+        $(document).on('click', function(event) {
+            if (!$(event.target).closest('#contactButton, #contactCards').length) {
+                $('#contactCards').removeClass('opacity-100 translate-y-0').addClass('opacity-0 translate-y-2');
+                $('#contactButton').show();
+            }
+        });
+    });
+</script>
+
+{% endblock %}

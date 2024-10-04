@@ -1,0 +1,622 @@
+{% extends 'base.html' %} {% load static %} 
+{% block title %}{{footer.company_main_page_title}}{% endblock %} 
+{% block content %} 
+<style>
+  @layer utilities {
+      .custom-inclined {
+        clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%);
+        border-radius: 0.75rem; /* This is equivalent to rounded-xl in Tailwind */
+      }
+    }
+    
+</style>
+
+
+<div class="relative w-full h-[600px]">
+  <!-- Slides -->
+  <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 1;">
+      <img src="{% static 'images/menu_slideshow/hhhh2.png' %}" alt="Image 1" class="w-full h-full object-cover">
+  </div>
+  <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
+      <img src="{% static 'images/menu_slideshow/hhhh1.png' %}" alt="Image 2" class="w-full h-full object-cover">
+  </div>
+  <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
+      <img src="{% static 'images/menu_slideshow/hhhh3.png' %}" alt="Image 3" class="w-full h-full object-cover">
+  </div>
+  <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
+      <img src="{% static 'images/menu_slideshow/hhhh4.png' %}" alt="Image 4" class="w-full h-full object-cover">
+  </div>
+  <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
+      <img src="{% static 'images/menu_slideshow/hhhh5.png' %}" alt="Image 5" class="w-full h-full object-cover">
+  </div>
+
+  <!-- Overlay for Slideshow -->
+  <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+      <h1 class="text-5xl md:text-5xl font-bold mb-4 melaku">Rome Furniture</h1>
+      <div class="flex gap-4">
+           <div class="mt-12  text-center card">
+            <a
+                href="{% url 'contact-us' %}"
+                id="slideshow-food-menu-btn" class="bg-slate-600 px-4 py-2 rounded hover:bg-blue-900 text-2xl text-white mks">
+                Leave your message
+            </a>
+        </div>
+         
+      </div>
+  </div>
+</div>
+
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      // Slideshow Functionality
+      let slideIndex = 0;
+      const slides = document.querySelectorAll('.slide');
+
+      function showSlides() {
+          slides.forEach((slide, index) => {
+              slide.style.opacity = '0'; // Hide all slides
+              if (index === slideIndex) {
+                  slide.style.opacity = '1'; // Show the current slide
+              }
+          });
+          slideIndex = (slideIndex + 1) % slides.length; // Move to the next slide
+      }
+
+      setInterval(showSlides, 3000); // Change slide every 3 seconds
+      showSlides(); // Show the first slide immediately
+    
+    })
+  </script>
+<div class="grid grid-cols-4 md:grid-cols-12 ">
+  <div class="col-span-12">
+         <!-- ====== About/chef Section Start -->
+         <section
+         id="about"
+         class=" px-2 pb-8 pt-12 dark:bg-dark-2 lg:pb-[70px] lg:pt-[120px]2"
+       >
+         <div class="md:mx-16 2xl:mx-32 px-2">
+           <div class="wow fadeInUp" data-wow-delay=".2s">
+             <div class="-mx-4 flex flex-wrap items-center">
+               <div class="w-full px-4 lg:w-1/2">
+                 <div class="mb-12 max-w-[540px] lg:mb-0">
+                
+                   <h2 class="mb-5 text-[42px] md:text-5xl font-bold leading-tight dark:text-white sm:text-[40px] sm:leading-[1.2] card merienda">
+                     Rome Furniture
+                   </h2>
+                   <p class="mb-10 text-base leading-relaxed  text-body-color dark:text-dark-6 card volkhov">
+                    Rome Furniture is a leading supplier of office, home, cafeteria, bar, and restaurant furniture, as well as safe boxes, metal cabinets, vertical blinds, mattresses, carpets, and more. Today, we are the market leader in Addis Ababa, and we plan to expand further into other major towns in the near future.
+                  </p>
+           
+           
+
+                 </div>
+               </div>
+           
+               <div class="w-full px-4 lg:w-1/2">
+                 <div class="-mx-2 flex flex-wrap sm:-mx-4 lg:-mx-2 xl:-mx-4">
+                   <div class="w-full px-2  sm:px-4 lg:px-2 xl:mx-32">
+                     <div class="mb-4 sm:mb-8 sm:h-[220px] md:h-[346px] lg:mb-4 lg:h-[225px] xl:mb-8 xl:h-[310px] w-[400] card">
+                       <img src="{% static 'images/main.jpg' %}" alt="Rome Furniture" class="h-full w-full object-cover object-center" />
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+         <script>
+           document.addEventListener('DOMContentLoaded', function() {
+             const moreContent = document.getElementById('moreContent');
+             const toggleButton = document.getElementById('toggleButton');
+         
+             toggleButton.addEventListener('click', function() {
+               if (moreContent.classList.contains('hidden')) {
+                 moreContent.classList.remove('hidden');
+                 toggleButton.textContent = 'Read Less';
+               } else {
+                 moreContent.classList.add('hidden');
+                 toggleButton.textContent = 'Read More';
+               }
+             });
+           });
+         </script>
+         <!-- Tailwind CSS Section with Title, Subtitle, and Button -->
+         
+       </section>
+       <!-- ====== About/chef Section End -->
+    <section class="section-name">
+      <!-- banner -->
+    
+  
+
+      <div class="md:ml-16 xl:ml-32">
+        <header class="section-heading">
+          <h2
+            class="text-3xl md:text-3xl font-medium text-gray-800 uppercase pt-4 mb-4 mt-4 px-6 md:px-0 card merienda"
+          >
+            {% comment %} Minerals {% endcomment %}
+          </h2>
+        </header>
+          <!-- product wrapper -->
+          <div id="product-list" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-2 gap-1 2xl:gap-3 lg:pr-16 xl:pr-32 2xl:pr-32 mb-6 lg:mb-8">
+            {% for product in most_liked_products %}
+            <a class="flex flex-col card" href="{{product.get_store_url}}">
+                <div class="m-2 bg-white shadow-md rounded-lg overflow-hidden flex-grow">
+                    <div class="relative group">
+                        <div class="w-full h-64 2xl:h-96 overflow-hidden relative">
+                            {% with product.get_main_image as main_image %}
+                            {% if main_image %}
+                                <img class="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110" src="{{ main_image.image.url }}" alt="{{ product.product_name }}">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="text-slate-400 text-lg md:text-2xl font-thin p-2 rounded"><i class="fas fa-star"></i> Rome Furniture</span>
+                                </div>
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+                      </div>
+                    <div class="bg-slate-100 hover:text-purple-400 text-center py-2 rounded-b mt-1">
+                        <div class=" w-full inline-block volkhov">{{ product.product_name|slice:":16"|capfirst }}</div>
+                    </div>
+                </div>
+              </a>
+            {% endfor %}
+        </div>
+        
+      </div>
+      
+    </section>
+   
+  
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <style>
+        .testimonial-carousel {
+          display: flex;
+          flex-wrap: wrap;
+        }
+    
+        .testimonial-item {
+          display: none;
+        }
+    
+        .testimonial-item.active {
+          display: block;
+        }
+      </style>
+  
+    
+    <!-- ====== Testimonial Section Start ====== -->
+    <section id="testimonials" class="overflow-hidden py-20 dark:bg-dark-2 md:py-24 px-2">
+      <div class="container mx-auto px-2">
+        <div class="-mx-4 flex flex-wrap justify-center">
+          <div class="w-full px-4">
+            <div class="mx-auto mb-16 max-w-xl text-center">
+              <h2 class="mb-3 text-3xl font-bold leading-snug text-dark dark:text-white sm:text-4xl md:text-5xl merienda">
+                What our Customers Say
+              </h2>
+              <p class="mb-6 text-base text-body-color dark:text-dark-6 volkhov">
+                “Rome Furniture consistently delivers exceptional quality furniture. Their focus on craftsmanship and attention to beautiful, timeless designs set them apart as a top-tier provider. We are always impressed by the stylish products and excellent service they offer, all at competitive prices.”
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-carousel">
+          <!-- Testimonial 1 -->
+          <div class="testimonial-item card w-full md:w-1/3 px-4 mb-8">
+            <div class="rounded-xl bg-white p-8 shadow-testimonial dark:bg-dark">
+              <div class="mb-4 flex items-center">
+                <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              </div>
+              <p class="mb-6 text-base text-body-color dark:text-dark-6 volkhov">Rome Furniture's pieces are the perfect blend of elegance and quality. Every item we've purchased is beautifully crafted and built to last. Their prices are surprisingly affordable for the high standard they offer. Being based in Addis Ababa, they make it easy for us to get premium furniture locally
+                </p>
+              <a href="#" class="flex items-center">
+                <div class="h-12 w-12 overflow-hidden rounded-full">
+                  <img
+                  src="{% static 'images/human.jpg' %}"
+                  alt="author"
+                  class="h-[50px] w-[50px] overflow-hidden rounded-full"
+                />
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-sm font-semibold text-dark dark:text-white">Mahlet Teshome</h3>
+                </div>
+              </a>
+            </div>
+          </div>
+          <!-- Testimonial 2 -->
+          <div class="testimonial-item card w-full md:w-1/3 px-4 mb-8">
+            <div class="rounded-xl bg-white p-8 shadow-testimonial dark:bg-dark">
+              <div class="mb-4 flex items-center">
+                <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              </div>
+              <p class="mb-6 text-base text-body-color dark:text-dark-6 volkhov">
+                We are always impressed with the stunning designs from Rome Furniture. The craftsmanship is top-notch, and the beauty of their products truly elevates our home. For the quality they provide, their prices are very reasonable, and it's great to have such a reliable furniture supplier in Addis Ababa.</p>
+              <a href="#" class="flex items-center">
+                <div class="h-12 w-12 overflow-hidden rounded-full">
+                  <img
+                       src="{% static 'images/human.jpg' %}"
+                       alt="author"
+                       class="h-[50px] w-[50px] overflow-hidden rounded-full"
+                     />
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-sm font-semibold text-dark dark:text-white">Keidr Jemal</h3>
+                </div>
+              </a>
+            </div>
+          </div>
+          <!-- Testimonial 3 -->
+          <div class="testimonial-item card w-full md:w-1/3 px-4 mb-8">
+            <div class="rounded-xl bg-white p-8 shadow-testimonial dark:bg-dark">
+              <div class="mb-4 flex items-center">
+                <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              </div>
+              <p class="mb-6 text-base text-body-color dark:text-dark-6 volkhov">
+                Rome Furniture offers an unbeatable combination of stylish, high-quality furniture at competitive prices. The fact that they are based in Addis Ababa makes it so convenient for us, and their delivery service is always timely and professional.</p>
+              <a href="#" class="flex items-center">
+                <div class="h-12 w-12 overflow-hidden rounded-full">
+                  <img
+                       src="{% static 'images/human.jpg' %}"
+                       alt="author"
+                       class="h-[50px] w-[50px] overflow-hidden rounded-full"
+                     />
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-sm font-semibold text-dark dark:text-white">Leonor Cid</h3>
+                </div>
+              </a>
+            </div>
+          </div>
+          <!-- Testimonial 4 -->
+          <div class="testimonial-item card w-full md:w-1/3 px-4 mb-8">
+            <div class="rounded-xl bg-white p-8 shadow-testimonial dark:bg-dark">
+              <div class="mb-4 flex items-center">
+                <img
+                     src="{% static 'images/testimonials/icon-star.svg' %}"
+                     alt="star icon"
+                   />
+                   <img
+                     src="{% static 'images/testimonials/icon-star.svg' %}"
+                     alt="star icon"
+                   />
+                   <img
+                     src="{% static 'images/testimonials/icon-star.svg' %}"
+                     alt="star icon"
+                   />
+                   <img
+                     src="{% static 'images/testimonials/icon-star.svg' %}"
+                     alt="star icon"
+                   />
+                   <img
+                     src="{% static 'images/testimonials/icon-star.svg' %}"
+                     alt="star icon"
+                   />
+              </div>
+              <p class="mb-6 text-base text-body-color dark:text-dark-6 volkhov">
+                The quality of Rome Furniture’s products is outstanding. Each piece is designed with such beauty and durability in mind, and their pricing is more than fair. Being locally based in Addis Ababa, they offer excellent service, making them our top choice for furniture.</p>
+              <a href="#" class="flex items-center">
+                <div class="h-12 w-12 overflow-hidden rounded-full">
+                  <img
+                  src="{% static 'images/human.jpg' %}"
+                  alt="author"
+                  class="h-[50px] w-[50px] overflow-hidden rounded-full"
+                />
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-sm font-semibold text-dark dark:text-white">Sabo Masties</h3>
+                </div>
+              </a>
+            </div>
+          </div>
+          <!-- Testimonial 5 -->
+          <div class="testimonial-item card w-full md:w-1/3 px-4 mb-8">
+            <div class="rounded-xl bg-white p-8 shadow-testimonial dark:bg-dark">
+              <div class="mb-4 flex items-center">
+                <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              </div>
+              <p class="mb-6 text-base text-body-color dark:text-dark-6 volkhov">
+                We’ve furnished our entire living room with Rome Furniture, and we couldn’t be happier. Their products are not only beautiful but also durable. Their prices are affordable, especially considering the quality. Having them in Addis Ababa is a big plus, as it supports local business.</p>
+              <a href="#" class="flex items-center">
+                <div class="h-12 w-12 overflow-hidden rounded-full">
+                  <img
+                       src="{% static 'images/human.jpg' %}"
+                       alt="author"
+                       class="h-[50px] w-[50px] overflow-hidden rounded-full"
+                     />
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-sm font-semibold text-dark dark:text-white">Musharof Chowdhury</h3>
+                </div>
+              </a>
+            </div>
+          </div>
+          <!-- Testimonial 6 -->
+          <div class="testimonial-item card w-full md:w-1/3 px-4 mb-8">
+            <div class="rounded-xl bg-white p-8 shadow-testimonial dark:bg-dark">
+              <div class="mb-4 flex items-center">
+                <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              <img
+                src="{% static 'images/testimonials/icon-star.svg' %}"
+                alt="star icon"
+              />
+              </div>
+              <p class="mb-6 text-base text-body-color dark:text-dark-6 volkhov">
+                Rome Furniture consistently delivers premium furniture that combines beauty, quality, and affordability. We appreciate their attention to detail and competitive pricing. Being located in Addis Ababa gives them a strong local presence and quick service, making them our go-to furniture supplier.</p>
+              <a href="#" class="flex items-center">
+                <div class="h-12 w-12 overflow-hidden rounded-full">
+                  <img
+                       src="{% static 'images/human.jpg' %}"
+                       alt="author"
+                       class="h-[50px] w-[50px] overflow-hidden rounded-full"
+                     />
+                </div>
+                <div class="ml-4">
+                  <h3 class="text-sm font-semibold text-dark dark:text-white">William Smith</h3>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Navigation buttons -->
+        <div class="pt-8 flex items-center justify-center gap-1">
+          <div class="swipe-prev pl-40 md:pl-96 2xl:pl-128 pr-3 cursor-pointer">
+            <i class="fa fa-arrow-circle-left text-slate-400 text-5xl" aria-hidden="true"></i>
+          </div>
+          <div class="swipe-next pr-48 md:pr-96 2xl:pr-128 cursor-pointer">
+            <i class="fa fa-arrow-circle-right text-slate-400 text-5xl " aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Testimonial Section End ====== -->
+    
+    <script>
+      $(document).ready(function() {
+        let currentIndex = 0;
+        const itemsPerPage = window.innerWidth >= 1024 ? 3 : 1;
+        const totalItems = $('.testimonial-item').length;
+    
+        function showItems() {
+          $('.testimonial-item').hide().removeClass('active');
+          for (let i = currentIndex; i < currentIndex + itemsPerPage; i++) {
+            $('.testimonial-item').eq(i % totalItems).fadeIn().addClass('active');
+          }
+        }
+    
+        $('.swipe-next').click(function() {
+          currentIndex = (currentIndex + itemsPerPage) % totalItems;
+          showItems();
+        });
+    
+        $('.swipe-prev').click(function() {
+          currentIndex = (currentIndex - itemsPerPage + totalItems) % totalItems;
+          showItems();
+        });
+    
+        showItems();
+      });
+    </script>
+  
+    
+ 
+      <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+       <script src="{% static 'js/main.js' %}"></script> 
+      <script>
+        // ==== for menu scroll
+        const pageLink = document.querySelectorAll(".ud-menu-scroll");
+  
+        pageLink.forEach((elem) => {
+          elem.addEventListener("click", (e) => {
+            e.preventDefault();
+            document.querySelector(elem.getAttribute("href")).scrollIntoView({
+              behavior: "smooth",
+              offsetTop: 1 - 60,
+            });
+          });
+        });
+  
+        // section menu active
+        function onScroll(event) {
+          const sections = document.querySelectorAll(".ud-menu-scroll");
+          const scrollPos =
+            window.pageYOffset ||
+            document.documentElement.scrollTop ||
+            document.body.scrollTop;
+  
+          for (let i = 0; i < sections.length; i++) {
+            const currLink = sections[i];
+            const val = currLink.getAttribute("href");
+            const refElement = document.querySelector(val);
+            const scrollTopMinus = scrollPos + 73;
+            if (
+              refElement.offsetTop <= scrollTopMinus &&
+              refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
+            ) {
+              document
+                .querySelector(".ud-menu-scroll")
+                .classList.remove("active");
+              currLink.classList.add("active");
+            } else {
+              currLink.classList.remove("active");
+            }
+          }
+        }
+  
+        window.document.addEventListener("scroll", onScroll);
+  
+        // Testimonial
+        const testimonialSwiper = new Swiper(".testimonial-carousel", {
+          slidesPerView: 1,
+          spaceBetween: 30,
+  
+          // Navigation arrows
+          navigation: {
+            nextEl: ".swipe-next",
+            prevEl: ".swipe-prev",
+          },
+  
+          breakpoints: {
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+            1280: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+          },
+        });
+      </script>
+  
+      <script>
+        let page = 2; // start from the second page
+        let isLoading = false; // flag to prevent multiple simultaneous requests
+        
+        window.onscroll = function (ev) {
+          if (!isLoading && window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+            isLoading = true; // set the flag to true to indicate that a request is in progress
+        
+            fetch(`/store?page=${page}`)
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error("Network response was not ok");
+                }
+                return response.json();
+              })
+              .then((data) => {
+                if (data.end) {
+                  window.onscroll = null; // remove the event handler when there are no more products
+                } else {
+                  data.products.forEach((product) => {
+                    // create a new product card
+                    let card = document.createElement("div");
+                    card.className = "flex flex-col";
+                    card.innerHTML = `
+                      <div class="m-2 bg-white shadow-md rounded-lg overflow-hidden flex-grow">
+                        <a href="${product.get_store_url}">
+                          <div class="w-full sm:h-32 md:h-64 overflow-hidden">
+                            <img class="w-full h-full object-cover" src="${product.product_images}" alt="${product.product_name}">
+                          </div>
+                        </a>
+                        <div class="sm:p-3 md:p-6">
+                          <a href="${product.get_store_url}" class="block text-lg font-semibold text-gray-800 hover:text-blue-600">${product.product_name}</a>
+                          <div class="my-2 md:my-4 text-blue-600 md:text-2xl">${product.product_price} birr</div>
+                        </div>
+                      </div>
+                    `;
+                    // append the new product card to the product list
+                    document.querySelector("#product-list").appendChild(card);
+                  });
+                  page++;
+                }
+              })
+              .catch((error) => {
+                console.error("There has been a problem with your fetch operation:", error);
+              })
+              .finally(() => {
+                isLoading = false; // set the flag back to false when the request is complete
+              });
+          }
+        };
+        
+      </script>
+{% endblock %}
