@@ -5,7 +5,8 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # GENERAL SETTINGS
-SECRET_KEY = config('SECRET_KEY')
+# SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY=django-indesecure-$epx^r=3u8b8ptdfr+yc_3&e)50gr1%-@3jgpl#j-&9&am#$2on*8
 
 # DEBUG = config('DEBUG', default=True, cast=bool)
 # DEBUG = True
@@ -16,7 +17,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = True
 
 # ALLOWED_HOSTS configuration
-ALLOWED_HOSTS = ["localhost","kodeplc.com"]
+ALLOWED_HOSTS = ["localhost","romefurnitures.com"]
 
 
 # Application definition
