@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # GENERAL SETTINGS
 # SECRET_KEY = config('SECRET_KEY')
-SECRET_KEY=django-indesecure-$epx^r=3u8b8ptdfr+yc_3&e)50gr1%-@3jgpl#j-&9&am#$2on*8
+SECRET_KEY="django-indesecure-$epx^r=3u8b8ptdfr+yc_3&e)50gr1%-@3jgpl#j-&9&am#$2on*8"
 
 # DEBUG = config('DEBUG', default=True, cast=bool)
 # DEBUG = True
@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'nested_admin',
     'theme',
     'django_quill',
-    # 'django_browser_reload' if DEBUG else '',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -62,7 +61,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'allauth.account.middleware.AccountMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "django_browser_reload.middleware.BrowserReloadMiddleware" if DEBUG else '',
 ]
 
 MIDDLEWARE = [mw for mw in MIDDLEWARE if mw]
@@ -205,22 +203,7 @@ ROOT_URLCONF = 'msigana_ecommerce.urls'
 WSGI_APPLICATION = 'msigana_ecommerce.wsgi.application'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# SOCIAL ACCOUNT PROVIDERS
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'APP': {
-            'client_id': config('GOOGLE_CLIENT_ID'),
-            'secret': config('GOOGLE_SECRET'),
-        }
-    },
-    'facebook': {
-        'APP': {
-            'client_id': config('FACEBOOK_CLIENT_ID'),
-            'secret': config('FACEBOOK_SECRET'),
-        },
-        'SCOPE': ['email', 'public_profile', 'user_friends'],
-    }
-}
+
 
 ACCOUNT_FORMS = {'signup': 'users.forms.CustomSignupForm'}
 SOCIALACCOUNT_ADAPTER = 'users.adapters.account_adapter.CustomSocialAccountAdapter'
@@ -230,11 +213,11 @@ CORS_ALLOW_ALL_ORIGINS = not DEBUG
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'mail.kodeplc.com' 
+EMAIL_HOST = 'mail.romefurnitures.com' 
 EMAIL_PORT = 465  
 EMAIL_USE_SSL = True  
 EMAIL_USE_TLS = False  
-EMAIL_HOST_USER = 'info@romefurniture.com'  
-EMAIL_HOST_PASSWORD = 'KodePLC11@#'  
-DEFAULT_FROM_EMAIL = 'info@kodeplc.com'  
-ADMIN_EMAIL = 'info@kodeplc.com'  
+EMAIL_HOST_USER = 'info@romefurnitures.com'  
+EMAIL_HOST_PASSWORD = 'RomeFurnitures11@#'  
+DEFAULT_FROM_EMAIL = 'info@romefurnitures.com'  
+ADMIN_EMAIL = 'info@romefurnitures.com'  
