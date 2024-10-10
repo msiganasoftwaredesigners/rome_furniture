@@ -1,88 +1,210 @@
-{% extends 'base.html' %} {% load static %} 
-{% block title %}{{footer.company_main_page_title}}{% endblock %} 
-{% block content %} 
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ footer.company_main_page_title }}{% endblock %}
+{% block content %}
+
 <style>
   @layer utilities {
-      .custom-inclined {
-        clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%);
-        border-radius: 0.75rem; /* This is equivalent to rounded-xl in Tailwind */
-      }
+    .custom-inclined {
+      clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%);
+      border-radius: 0.75rem; /* Equivalent to rounded-xl */
     }
-    
+  }
+
+  /* Style for video container and play icon */
+  .video-container {
+    position: relative;
+    width: 50%;
+    height: 50%;
+    max-height: 300px; /* Maximum height for large screens */
+    background-color: none; /* Ensure background color */
+    z-index: 5;
+  }
+  
+  /* Media query for smaller screens */
+  @media (max-width: 1024px) {
+    .video-container {
+      width: 75%;  /* Increase width for medium screens */
+      height: 70%; /* Adjust height */
+      max-height: 250px; /* Adjust max height */
+    }
+  }
+  
+  /* Media query for mobile screens */
+  @media (max-width: 768px) {
+    .video-container {
+      width: 90%;  /* Full width for smaller screens */
+      height: 70%; /* Adjust height */
+      max-height: 200px; /* Adjust max height */
+    }
+  }
+  
+  /* Media query for very small mobile screens */
+  @media (max-width: 480px) {
+    .video-container {
+      width: 100%;  /* Full width for extra small screens */
+      height: 75%; /* Adjust height */
+      max-height: 300px; /* Further adjust max height */
+    }
+  }
+  
+
+
+  /* Update the style for the play icon */
+  .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+    background: none;  /* Ensures no background */
+    box-shadow: none;  /* Removes any shadow */
+  }
+  
+
+  .hidden-video {
+    display: none;
+  }
+
+  /* Responsive height for larger screens */
+  @media (min-width: 1024px) {
+    .video-container {
+      height: 100%; /* Adjust the height for larger screens */
+    }
+  }
 </style>
 
-
 <div class="relative w-full h-[500px]">
-  <!-- Slides -->
+  <!-- Background slideshow images -->
   <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 1;">
-      <img src="{% static 'images/rome/rome1.jpg' %}" alt="Image 1" class="w-full h-full object-cover">
-  </div>
-  <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
-      <img src="{% static 'images/rome/rome2.jpg' %}" alt="Image 2" class="w-full h-full object-cover">
-  </div>
-  <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
-      <img src="{% static 'images/rome/rome3.jpg' %}" alt="Image 3" class="w-full h-full object-cover">
-  </div>
-  <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
-      <img src="{% static 'images/rome/rome4.jpg' %}" alt="Image 4" class="w-full h-full object-cover">
-  </div>
-  <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
-      <img src="{% static 'images/rome/rome8.jpg' %}" alt="Image 5" class="w-full h-full object-cover">
-  </div>
-  <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
-    <img src="{% static 'images/rome/rome11.jpg' %}" alt="Image 2" class="w-full h-full object-cover">
+    <img src="{% static 'images/rome/rome1.jpg' %}" alt="Image 1" class="w-full h-full object-cover">
 </div>
 <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
-    <img src="{% static 'images/rome/rome17.jpg' %}" alt="Image 3" class="w-full h-full object-cover">
+    <img src="{% static 'images/rome/rome2.jpg' %}" alt="Image 2" class="w-full h-full object-cover">
 </div>
 <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
-    <img src="{% static 'images/rome/rome18.jpg' %}" alt="Image 4" class="w-full h-full object-cover">
+    <img src="{% static 'images/rome/rome3.jpg' %}" alt="Image 3" class="w-full h-full object-cover">
 </div>
 <div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
-    <img src="{% static 'images/rome/rome28.jpg' %}" alt="Image 5" class="w-full h-full object-cover">
+    <img src="{% static 'images/rome/rome4.jpg' %}" alt="Image 4" class="w-full h-full object-cover">
+</div>
+<div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
+    <img src="{% static 'images/rome/rome8.jpg' %}" alt="Image 5" class="w-full h-full object-cover">
+</div>
+<div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
+  <img src="{% static 'images/rome/rome11.jpg' %}" alt="Image 2" class="w-full h-full object-cover">
+</div>
+<div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
+  <img src="{% static 'images/rome/rome17.jpg' %}" alt="Image 3" class="w-full h-full object-cover">
+</div>
+<div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
+  <img src="{% static 'images/rome/rome18.jpg' %}" alt="Image 4" class="w-full h-full object-cover">
+</div>
+<div class="slide absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out" style="opacity: 0;">
+  <img src="{% static 'images/rome/rome28.jpg' %}" alt="Image 5" class="w-full h-full object-cover">
 </div>
 
-  <!-- Overlay for Slideshow -->
-  <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
-      <h1 class="text-5xl md:text-5xl font-bold mb-4 melaku">Rome Furniture</h1>
+  <div class="absolute inset-0 flex flex-col lg:flex-row items-center justify-between text-white">
+    <!-- Left Side: Title and Button -->
+    <div class="lg:w-1/2 w-full flex flex-col items-center  text-center ">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-center">Rome Furniture</h1>
       <div class="flex gap-4">
-           <div class="mt-12  text-center card">
-            <a
-                href="{% url 'contact-us' %}"
-                id="slideshow-food-menu-btn" class="bg-slate-600 px-4 py-2 rounded hover:bg-blue-900 text-2xl text-white mks">
-                Leave your message
-            </a>
+        <div class="mt-12">
+          <a
+            href="{% url 'contact-us' %}"
+            id="slideshow-food-menu-btn"
+            class="bg-slate-600 px-4 py-2 rounded hover:bg-blue-900 text-2xl text-white"
+          >
+            Leave your message
+          </a>
         </div>
-         
       </div>
+    </div>
+
+    <!-- Right Side: Video Container -->
+    <div class="video-container md:mx-16 2xl:mx-32">
+      <div id="playIcon" class="play-icon">
+        <i class="fas fa-play"></i>
+      </div>
+      <iframe id="main-video" class="absolute inset-0 w-full h-full hidden-video"
+        src="https://www.youtube.com/embed/ZAdx4Hy6nXg?enablejsapi=1"
+        title="Yehiwote Hiwot by Tilahun Gesese"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      ></iframe>
+    </div>
   </div>
-</div>
 
-
-
-
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-      // Slideshow Functionality
+  <!-- Slideshow script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
       let slideIndex = 0;
       const slides = document.querySelectorAll('.slide');
 
       function showSlides() {
-          slides.forEach((slide, index) => {
-              slide.style.opacity = '0'; // Hide all slides
-              if (index === slideIndex) {
-                  slide.style.opacity = '1'; // Show the current slide
-              }
-          });
-          slideIndex = (slideIndex + 1) % slides.length; // Move to the next slide
+        slides.forEach((slide, index) => {
+          slide.style.opacity = '0';
+          if (index === slideIndex) {
+            slide.style.opacity = '1';
+          }
+        });
+        slideIndex = (slideIndex + 1) % slides.length;
       }
 
-      setInterval(showSlides, 3000); // Change slide every 3 seconds
-      showSlides(); // Show the first slide immediately
-    
-    })
+      setInterval(showSlides, 3000);
+      showSlides();
+    });
   </script>
+
+  <!-- Video Play/Stop Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const playIcon = document.getElementById('playIcon');
+      const video = document.getElementById('main-video');
+      const videoSrc = video.src;
+
+      // Play video when play icon is clicked
+      playIcon.addEventListener('click', function() {
+        video.classList.remove('hidden-video');
+        playIcon.style.display = 'none'; // Hide play icon
+        video.src += "&autoplay=1"; // Start playing
+      });
+
+      // Stop video and hide it when clicked outside
+      document.addEventListener('click', function(event) {
+        if (!video.contains(event.target) && !playIcon.contains(event.target)) {
+          video.src = videoSrc; // Stop video
+          video.classList.add('hidden-video'); // Hide video
+          playIcon.style.display = 'block'; // Show play icon
+        }
+      });
+    });
+  </script>
+</div>
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="grid grid-cols-4 md:grid-cols-12 ">
   <div class="col-span-12">
          <!-- ====== About/chef Section Start -->
